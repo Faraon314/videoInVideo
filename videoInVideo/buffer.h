@@ -1,6 +1,7 @@
 #ifndef BUFFER_H
 #define BUFFER_H
 
+#include <atomic>
 #include <iostream>
 #include <string>
 #include <thread>
@@ -25,8 +26,9 @@ private:
     int Rows;
     int Cols;
     int type;
+    bool status;
 public:
-
+    bool isEnd();
     void setRows(int);
     void setCols(int);
     void setType(int);

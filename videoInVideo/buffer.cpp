@@ -10,6 +10,7 @@ buffer::buffer(int size,int frame_count)
     used_space= new boost::interprocess::interprocess_semaphore(0);
     this->frame_count=frame_count;
     count=0;
+    status=true;
 }
 
 void  buffer::push(cv::Mat frame)
@@ -39,10 +40,15 @@ cv::Mat buffer::get()
     }else
     {
        frame=cv::Mat::zeros(Rows, Cols, type);
-
+       status=false;
     }
 
     return frame;
+}
+
+bool buffer::isEnd()
+{
+    return status;
 }
 
 void buffer::setRows(int Rows )

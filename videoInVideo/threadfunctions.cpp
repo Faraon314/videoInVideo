@@ -11,7 +11,7 @@ void threadFunctionIn(buffer& buffer,cv::VideoCapture & capture)
     buffer.setType(frame.type());
     buffer.push(frame);
 
-    while(true)
+    while(buffer.isEnd())
     {
         capture >> frame;
         if(frame.empty())
@@ -30,7 +30,7 @@ void threadFunctionOut(buffer& bufferSmall,buffer& bufferBig,int fpsSmal,int fps
     int Lcm=lcm(a,b);
     int FpsDelay=(1000/(Lcm*Gcd))+1;
     int i=0;
-    while(true)
+    while(bufferSmall.isEnd()||bufferBig.isEnd())
     {
         if(i%b==0)
         {
