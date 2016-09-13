@@ -11,7 +11,7 @@ void threadFunctionIn(buffer& buffer,cv::VideoCapture & capture)
     buffer.setType(frame.type());
     buffer.push(frame);
 
-    while(buffer.isEnd())
+    while(buffer.isRun())
     {
         capture >> frame;
         if(frame.empty())
@@ -30,23 +30,26 @@ void threadFunctionOut(buffer& bufferSmall,buffer& bufferBig,int fpsSmal,int fps
     int Lcm=lcm(a,b);
     int FpsDelay=(1000/(Lcm*Gcd))+1;
     int i=0;
-    while(bufferSmall.isEnd()||bufferBig.isEnd())
+
+    while(bufferSmall.isRun()||bufferBig.isRun())
     {
-        if(i%b==0)
-        {
-        frameFirst=bufferSmall.get();
-        }
         if(i%a==0)
         {
         frameSecond=bufferBig.get();
         }
+        if(i%b==0&&bufferSmall.isRun())
+        {
+        frameFirst=bufferSmall.get();
+        frameSecond = merge_frames(frameFirst,frameSecond);
+        }
+
         if(i%Lcm==0)
         {
             i=0;
         }
         i++;
-        cv::Mat frame = merge_frames(frameFirst,frameSecond);
-        imshow("test", frame);
+
+        imshow("test", frameSecond);
         char c = (char)cv::waitKey(FpsDelay);
         if (c == 27)
             break;

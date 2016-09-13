@@ -16,19 +16,27 @@
 class buffer
 {
 private:
+    //размер буфера (контролируется семафором)
     int size;
+    //количество кадров в загружаемом потоке
     int frame_count;
+    //счетчик отправленных из буфера кадров
     int count;
+
     std::queue<cv::Mat> queue;
     std::mutex* mutex;
+    //семафоры
     boost::interprocess::interprocess_semaphore* free_space;
     boost::interprocess::interprocess_semaphore* used_space;
+
+    //нужно чтобы получить черное окно правильного размера когда в буфере больше ничего не появится
     int Rows;
     int Cols;
     int type;
+    //нужно чтобы узнать что в буфере больше ничего не появится
     bool status;
 public:
-    bool isEnd();
+    bool isRun();
     void setRows(int);
     void setCols(int);
     void setType(int);

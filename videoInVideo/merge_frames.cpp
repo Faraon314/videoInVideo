@@ -12,7 +12,6 @@ cv::Mat merge_frames(cv::Mat & frameSmall,cv::Mat & frameBig){
     resize(frameSmall,smallFrame,size);
     smallFrame.copyTo(frameResult(cv::Rect(0,0,smallFrame.cols, smallFrame.rows)));
 
-
     return frameResult;
 }
 

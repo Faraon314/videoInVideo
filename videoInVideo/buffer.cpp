@@ -46,7 +46,7 @@ cv::Mat buffer::get()
     return frame;
 }
 
-bool buffer::isEnd()
+bool buffer::isRun()
 {
     return status;
 }

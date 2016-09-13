@@ -14,7 +14,9 @@
 
 #include <buffer.h>
 
+//потоки записывающие в буфер
 void threadFunctionIn(buffer& ,cv::VideoCapture & );
+//поток записывающие из  буфера
 void threadFunctionOut(buffer& ,buffer&,int,int);
 
 

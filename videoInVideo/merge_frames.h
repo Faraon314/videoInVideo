@@ -8,6 +8,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/calib3d/calib3d.hpp>
 
+
 cv::Mat merge_frames(cv::Mat &, cv::Mat &);
 
 #endif // MERGE_FRAMES
