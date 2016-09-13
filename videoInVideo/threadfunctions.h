@@ -15,7 +15,7 @@
 #include <buffer.h>
 
 void threadFunctionIn(buffer& ,cv::VideoCapture & );
-void threadFunctionOut(buffer& ,buffer&);
+void threadFunctionOut(buffer& ,buffer&,int,int);
 
 
 #endif // THREADFUNCTIONS
